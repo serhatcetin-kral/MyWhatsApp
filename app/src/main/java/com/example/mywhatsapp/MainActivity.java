@@ -1,12 +1,17 @@
 package com.example.mywhatsapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
@@ -20,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     //firebase
     private  FirebaseUser mevcutKullanici;
+
+    private FirebaseAuth mYetki;
 
 
     @Override
@@ -38,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         myTablayout=findViewById(R.id.ana_sekmeler);
         myTablayout.setupWithViewPager(myViewPager);
 
+    //firebase
+        mYetki=FirebaseAuth.getInstance();
+        mevcutKullanici=mYetki.getCurrentUser();
+
+
 
     }
 
@@ -55,5 +67,34 @@ public class MainActivity extends AppCompatActivity {
         Intent loginIntent=new Intent(MainActivity.this,LoginActivity.class);
         startActivity(loginIntent);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+         super.onCreateOptionsMenu(menu);
+
+
+        getMenuInflater().inflate(R.menu.secenekler_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+         super.onOptionsItemSelected(item);
+
+if(item.getItemId()==R.id.ana_arkadas_bulma_secenegi){
+
+}
+        if(item.getItemId()==R.id.ana_ayarlar_secenegi){
+
+        }
+        if(item.getItemId()==R.id.ana_cikis_secenegi){
+
+
+            mYetki.signOut();
+            Intent giris=new Intent(MainActivity.this,LoginActivity.class);
+             startActivity(giris);
+        }
+ return true;
     }
 }

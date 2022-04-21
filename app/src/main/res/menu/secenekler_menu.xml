@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+   <item
+       android:id="@+id/ana_arkadas_bulma_secenegi"
+       android:title="find friends"
+       app:showAsAction="never"
+
+       >
+
+   </item>
+    <item
+        android:id="@+id/ana_ayarlar_secenegi"
+        android:title="settings"
+        app:showAsAction="never"
+
+        >
+
+    </item>
+    <item
+        android:id="@+id/ana_cikis_secenegi"
+        android:title="sign out"
+        app:showAsAction="never"
+
+        >
+
+    </item>
+
+</menu>
