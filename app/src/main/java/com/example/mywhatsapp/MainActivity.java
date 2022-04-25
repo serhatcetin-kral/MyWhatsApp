@@ -87,6 +87,9 @@ if(item.getItemId()==R.id.ana_arkadas_bulma_secenegi){
 }
         if(item.getItemId()==R.id.ana_ayarlar_secenegi){
 
+            Intent ayar=new Intent(MainActivity.this,AyarlarActivity.class);
+            startActivity(ayar);
+
         }
         if(item.getItemId()==R.id.ana_cikis_secenegi){
 

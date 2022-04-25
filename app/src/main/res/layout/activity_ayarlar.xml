@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AyarlarActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profil_resmi"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:src="@drawable/profil_resmi1"
+        app:civ_border_width="4dp"
+        app:civ_border_color="#009688"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+
+        />
+
+    <EditText
+        android:id="@+id/kullanici_adi_ayarla"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/profil_resmi"
+        android:inputType="textMultiLine"
+        android:hint="user name"
+        android:layout_marginTop="35dp"
+        android:textAlignment="center"
+        android:drawableStart="@drawable/ic_picture"
+        android:textStyle="bold"
+        android:background="@drawable/girdiler"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:padding="5dp"
+
+
+        />
+
+    <EditText
+        android:id="@+id/profil_durumu_ayarla"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/kullanici_adi_ayarla"
+        android:inputType="textMultiLine"
+        android:hint="hey i amusing whats up"
+        android:layout_marginTop="35dp"
+        android:textAlignment="center"
+        android:drawableStart="@drawable/ic_status"
+        android:textStyle="bold"
+        android:background="@drawable/girdiler"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:padding="5dp"
+
+        />
+
+    <Button
+        android:id="@+id/ayarlari_guncelleme_butonu"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/profil_durumu_ayarla"
+        android:inputType="textMultiLine"
+        android:text="update"
+        android:layout_marginTop="35dp"
+        android:textAlignment="center"
+
+        android:textStyle="bold"
+        android:background="@drawable/girdiler"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:padding="5dp"
+  android:textSize="20dp"
+        />
+</RelativeLayout>
