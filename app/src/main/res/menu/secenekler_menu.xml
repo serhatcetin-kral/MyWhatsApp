@@ -12,6 +12,14 @@
 
    </item>
     <item
+        android:id="@+id/ana_gurup_olustur_secenegi"
+        android:title="create new group"
+        app:showAsAction="never"
+
+        >
+
+    </item>
+    <item
         android:id="@+id/ana_ayarlar_secenegi"
         android:title="settings"
         app:showAsAction="never"

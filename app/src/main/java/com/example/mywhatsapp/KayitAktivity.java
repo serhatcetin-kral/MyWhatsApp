@@ -101,13 +101,13 @@ public class KayitAktivity extends AppCompatActivity {
                                 anasayfa.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//geriye basildigi zaman kayit sayfasina gitmemesi icin
                                 startActivity(anasayfa);
                                     finish();
-                                Toast.makeText(KayitAktivity.this, "successful NEW ACCOUNT CREATED", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(KayitAktivity.this, "successful NEW ACCOUNT CREATED", Toast.LENGTH_LONG).show();
                            yukleniyorDiolag.dismiss();
                             }
                             else {
 
                                 String mesaj=task.getException().toString();
-                                Toast.makeText(KayitAktivity.this, "error "+mesaj+" please check your info", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(KayitAktivity.this, "error "+mesaj+" please check your info", Toast.LENGTH_LONG).show();
 yukleniyorDiolag.dismiss();
                             }
                         }
