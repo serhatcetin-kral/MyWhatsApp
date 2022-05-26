@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyWhatsApp">
         <activity
+            android:name=".TelefonlaOturumActivity"
+            android:exported="false" />
+        <activity
             android:name=".GrupChatActivity"
             android:exported="false" />
         <activity

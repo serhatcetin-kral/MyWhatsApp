@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TelefonlaOturumActivity">
+    <EditText
+        android:id="@+id/telefonla_numarasi_girdi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+      android:layout_marginEnd="15dp"
+        android:layout_marginTop="190dp"
+        android:background="@drawable/girdiler"
+        android:padding="10dp"
+        android:hint="please enter your phone number"
+        android:textAllCaps="false"
+        android:drawableStart="@drawable/ic_phone_kayit"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:id="@+id/dogrulama_kodu_girdisi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/girdiler"
+        android:padding="10dp"
+        android:hint="please enter activetion code"
+        android:textAllCaps="false"
+        android:drawableStart="@drawable/ic_lock"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:layout_below="@+id/telefonla_numarasi_girdi"
+        android:visibility="invisible"
+        />
+    <Button
+        android:id="@+id/dogrulama_kodu_gonder_buttonu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="send cerify code"
+        android:textAllCaps="false"
+        android:layout_margin="15dp"
+        android:layout_below="@+id/dogrulama_kodu_girdisi"
+
+        />
+    <Button
+        android:id="@+id/dogrulama_buttonu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="confirm code"
+        android:textAllCaps="false"
+        android:layout_margin="15dp"
+        android:layout_below="@+id/dogrulama_kodu_gonder_buttonu"
+        android:labelFor="@+id/dogrulama_kodu_gonder_buttonu"
+        android:visibility="invisible"
+
+        />
+
+</RelativeLayout>

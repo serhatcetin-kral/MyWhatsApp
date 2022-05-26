@@ -66,6 +66,15 @@ public class LoginActivity extends AppCompatActivity {
                 KullaniciyaGirisIzniVer();
             }
         });
+
+
+        telefonlaGirisButonu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent telefonlaOturum=new Intent(LoginActivity.this,TelefonlaOturumActivity.class);
+                startActivity(telefonlaOturum);
+            }
+        });
     }
 
     private void KullaniciyaGirisIzniVer() {

@@ -71,7 +71,7 @@
             android:id="@+id/mesaj_gonderme_buttonu"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
-         android:background="@drawable/ic_send"
+         android:background="@drawable/ic_send2"
 
             />
 
