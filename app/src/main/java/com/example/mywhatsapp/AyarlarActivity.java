@@ -1,9 +1,19 @@
 package com.example.mywhatsapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import android.Manifest;
+import android.content.Context;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +29,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+
+
 
 import java.util.HashMap;
 
@@ -34,7 +48,10 @@ public class AyarlarActivity extends AppCompatActivity {
     private FirebaseAuth mYetki;
     private String mevcutKullaniciId;
  private DatabaseReference veriYolu;
-
+ //resim secme
+    private static int GaleriSecme=1;
+    private static int PICK_IMAGE=1;
+    private Uri uri;
 
 
     @Override
@@ -43,17 +60,16 @@ public class AyarlarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ayarlar);
 
         //firebase
-        mYetki=FirebaseAuth.getInstance();
-       veriYolu= FirebaseDatabase.getInstance().getReference();
-        mevcutKullaniciId=mYetki.getCurrentUser().getUid();
+        mYetki = FirebaseAuth.getInstance();
+        veriYolu = FirebaseDatabase.getInstance().getReference();
+        mevcutKullaniciId = mYetki.getCurrentUser().getUid();
 
 
-
-       //kotrol tanimlamalari
-        HesapAyarlariniGuncelle=findViewById(R.id.ayarlari_guncelleme_butonu);
-        kullaniciAdi=findViewById(R.id.kullanici_adi_ayarla);
-        kullaniciDurumu=findViewById(R.id.profil_durumu_ayarla);
-        kullaniciProfilResmi=findViewById(R.id.profil_resmi);
+        //kotrol tanimlamalari
+        HesapAyarlariniGuncelle = findViewById(R.id.ayarlari_guncelleme_butonu);
+        kullaniciAdi = findViewById(R.id.kullanici_adi_ayarla);
+        kullaniciDurumu = findViewById(R.id.profil_durumu_ayarla);
+        kullaniciProfilResmi = findViewById(R.id.profil_resmi);
 
         HesapAyarlariniGuncelle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +77,104 @@ public class AyarlarActivity extends AppCompatActivity {
                 AyarlariGuncelle();
             }
         });
-     kullaniciAdi.setVisibility(View.INVISIBLE);
-     KullaniciBilgisiAl();
+        kullaniciAdi.setVisibility(View.INVISIBLE);
+        KullaniciBilgisiAl();
+
+
+        ///////////////////////////////////////////////////////////resim
+
+
+     kullaniciProfilResmi.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+
+
+
+//tikladiginda galeriyi ac
+//Intent galeriIntent=new Intent();
+//galeriIntent.setAction(Intent.ACTION_GET_CONTENT);
+//galeriIntent.setType("image/*");
+//startActivityForResult(galeriIntent,GaleriSecme);
+
+             //   bu kod resim secmek ve crop icin
+             CropImage.startPickImageActivity(AyarlarActivity.this);
+
+
+         }
+     });
 
     }
+//resim secme kodu
+@RequiresApi(api = Build.VERSION_CODES.M)
+@Override
+protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+
+    if(requestCode==CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode== Activity.RESULT_OK)
+    {
+
+        Uri imageuri=CropImage.getPickImageResultUri(this,data);
+        if(CropImage.isReadExternalStoragePermissionsRequired(this,imageuri))
+        {
+            uri=imageuri;
+            requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},0);
+        }else {
+
+            startCrop(imageuri);
+        }
+
+    }
+    if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+    {
+        CropImage.ActivityResult result=CropImage.getActivityResult(data);
+        if(requestCode==RESULT_OK)
+        {
+            kullaniciProfilResmi.setImageURI(result.getUri());
+            Toast.makeText(this, "profil picture update is successfully", Toast.LENGTH_LONG).show();
+        }
+    }
+}
+
+    private void startCrop(Uri imageuri) {
+        CropImage.activity(imageuri).setGuidelines(CropImageView.Guidelines.ON)
+                .setMultiTouchEnabled(true)
+                .start(this);
+
+
+    }
+    ///////////////
+
+
+//bu kisim ise yaramadi ama tutuyom
+
+//   @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//if(requestCode==GaleriSecme && requestCode==RESULT_OK && data!=null){
+//
+//   Uri ResimUri=data.getData();
+//
+//
+//  CropImage.activity()
+//          .setDuidelines(CropImage.Guidelines.ON)
+//          .setAspectRatio(1,1)
+//          .start(this);
+//
+//
+//}
+//
+//if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+//{
+//
+//
+//    CropImage.ActivityResult result=CropImage.getActivityResult(data);
+//
+//
+//}
+//
+//    }
+////////////////////////////////////////////////resim
 
     private void KullaniciBilgisiAl() {
 
@@ -153,6 +263,9 @@ veriYolu.child("Kullanicilar").child(mevcutKullaniciId).addValueEventListener(ne
                 }
             });
 
+
         }
+
+
     }
 }
